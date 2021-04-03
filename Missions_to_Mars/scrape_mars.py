@@ -106,7 +106,11 @@ browser.quit()
 
 # Create a dictionary with all the scraped data
 scrape_dict = {
-    "latest_title": latest_title
+    "latest_title": latest_title,
+    "latest_paragraph": latest_paragraph,
+    "featured_image_url": featured_image_url,
+    "mars_table": mars_table,
+    "hemisphere_image_urls": hemisphere_image_urls
 }
 
 # Return the dictionary to LOCATION
