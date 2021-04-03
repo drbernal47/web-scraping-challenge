@@ -54,9 +54,7 @@ def scrape():
     mars_table = tables[0]
 
     # Convert this table into an html string
-    mars_table.to_html('table.html')
-    mars_table_html = mars_table.to_html()
-    # mars_table_html.replace('\n','')
+    mars_table_html = mars_table.to_html(header=False, index=False)
 
 
     # Scraping images for Mars Hemispheres
