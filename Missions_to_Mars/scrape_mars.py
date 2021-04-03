@@ -55,6 +55,8 @@ def scrape():
 
     # Convert this table into an html string
     mars_table.to_html('table.html')
+    mars_table_html = mars_table.to_html()
+    # mars_table_html.replace('\n','')
 
 
     # Scraping images for Mars Hemispheres
@@ -105,7 +107,7 @@ def scrape():
         "latest_title": latest_title,
         "latest_paragraph": latest_paragraph,
         "featured_image_url": featured_image_url,
-        "mars_table": mars_table,
+        "mars_table_html": mars_table_html,
         "hemisphere_image_urls": hemisphere_image_urls
     }
 

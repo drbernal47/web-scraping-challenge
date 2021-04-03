@@ -24,15 +24,15 @@ db = client.mars_data
 
 @app.route("/")
 def index():
-    listings = db.mars_data.find_one()
-    return render_template("index.html", listings=listings)
+    mars_data = db.mars_data.find_one()
+    return render_template("index.html", listings=mars_data)
 
 
 @app.route("/scrape")
 def scraper():
-    listings = db.mars_data
-    listings_data = scrape_mars.scrape()
-    listings.update({}, listings_data, upsert=True)
+    mars_data = db.mars_data
+    mars_scraped = scrape_mars.scrape()
+    mars_data.update({}, mars_scraped, upsert=True)
     return redirect("/", code=302)
 
 
