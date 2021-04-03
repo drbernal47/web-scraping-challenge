@@ -20,9 +20,6 @@ soup = BeautifulSoup(html, 'html.parser')
 news_titles = soup.find_all('div', class_='content_title')
 paragraphs = soup.find_all('div', class_='article_teaser_body')
 
-# Close the browser
-browser.quit()
-
 # Store the latest content from the scraped data into variables for later
 latest_title = news_titles[0].text
 print(latest_title)
@@ -30,3 +27,21 @@ print('====================================================================')
 
 latest_paragraph = paragraphs[0].text
 print(latest_paragraph)
+
+
+# Scraping JPL Mars Space Images
+# URL of page to be scraped
+url = 'https://spaceimages-mars.com/'
+browser.visit(url)
+
+# Collect the latest News Title and Paragraph Text
+html = browser.html
+soup = BeautifulSoup(html, 'html.parser')
+image_data = soup.find_all('img')
+
+# Close the browser
+browser.quit()
+
+# Store url for latest featured image (index 1, after the NASA logo) into a variable for later
+featured_image_url = url + image_data[1].get("src")
+print(featured_image_url)
