@@ -39,9 +39,6 @@ html = browser.html
 soup = BeautifulSoup(html, 'html.parser')
 image_data = soup.find_all('img')
 
-# Close the browser
-browser.quit()
-
 # Store url for latest featured image (index 1, after the NASA logo) into a variable for later
 featured_image_url = url + image_data[1].get("src")
 print(featured_image_url)
@@ -61,3 +58,47 @@ mars_table = tables[0]
 mars_table.to_html('table.html')
 
 print(mars_table)
+
+
+# Scraping images for Mars Hemispheres
+# URL of page to be scraped
+url = 'https://marshemispheres.com/'
+browser.visit(url)
+
+# Find links on the main page for hemisphere pages and store link urls
+html = browser.html
+soup = BeautifulSoup(html, 'html.parser')
+all_links = soup.find_all('a', class_='itemLink')
+hemi_links = [all_links[1].get('href')]
+hemi_links.append(all_links[3].get('href'))
+hemi_links.append(all_links[5].get('href'))
+hemi_links.append(all_links[7].get('href'))
+
+# Create an empty list to store dictionaries
+hemisphere_image_urls = []
+
+# Scrape links and visit each to find data
+
+for hemi in hemi_links:
+        
+    # Go to hemisphere page
+    hemi_url = url + hemi
+    browser.visit(hemi_url)
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+        
+    # Store data for the title and enhanced image
+    title = soup.find_all('h2', class_='title')[0].text
+    img_url = url + soup.find('img', class_='wide-image').get('src')
+    
+    # Create a dictionary of this data and append to list
+    hemi_dict = {'title': title, "img_url": img_url}
+    hemisphere_image_urls.append(hemi_dict)
+        
+    # Go back to original page
+    browser.visit(url)
+    
+print(hemisphere_image_urls)
+
+# Close the browser
+browser.quit()
