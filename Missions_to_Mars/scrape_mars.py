@@ -45,3 +45,19 @@ browser.quit()
 # Store url for latest featured image (index 1, after the NASA logo) into a variable for later
 featured_image_url = url + image_data[1].get("src")
 print(featured_image_url)
+
+
+# Scraping Mars Facts
+# URL of page to be scraped
+url = 'https://galaxyfacts-mars.com/'
+
+# Use pandas to scrape tables
+tables = pd.read_html(url)
+
+# Find the first table with desired data
+mars_table = tables[0]
+
+# Convert this table into an html string
+mars_table.to_html('table.html')
+
+print(mars_table)
