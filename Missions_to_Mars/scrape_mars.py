@@ -102,3 +102,14 @@ print(hemisphere_image_urls)
 
 # Close the browser
 browser.quit()
+
+
+# Create a dictionary with all the scraped data
+scrape_dict = {
+    "latest_title": latest_title
+}
+
+# Return the dictionary to LOCATION
+
+print("==============")
+print(scrape_dict)
